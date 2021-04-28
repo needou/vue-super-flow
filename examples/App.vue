@@ -17,12 +17,12 @@
       :output-intercept="outputIntercept"
       :link-desc="linkDesc">
       <template v-slot:node="{meta}">
-        <div :class="`flow-node flow-node-${meta.prop}`">
+        <div @click="clk(meta)" :class="`flow-node flow-node-${meta.meta.prop}`">
           <header>
-            {{meta.name}}
+          {{meta.meta.name}}
           </header>
           <section>
-            {{meta.desc}}
+            {{meta.meta.desc}}
           </section>
         </div>
       </template>
@@ -430,6 +430,10 @@
       }, 100)
     },
     methods: {
+	clk(item){
+	
+	console.log(item)
+	},
       enterIntercept(formNode, toNode, graph) {
         const formType = formNode.meta.prop
         switch (toNode.meta.prop) {
